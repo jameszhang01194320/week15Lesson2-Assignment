@@ -64,6 +64,5 @@ Include a link to the GitHub repository in the project documentation.
 ├── Remove Items from Cart
 ├── View Cart
 ├── Empty Cart
-└── Place Order (from cart)
 
 

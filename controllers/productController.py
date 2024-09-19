@@ -2,6 +2,7 @@ from flask import request, jsonify
 from models.schemas.productSchema import product_schema, products_schema
 from marshmallow import ValidationError
 from services import productService
+from utils.util import token_required
 
 def save():
     try: 
@@ -13,7 +14,7 @@ def save():
 
     return product_schema.jsonify(new_product), 201 
 
-
+@token_required
 def find_all():
     page = request.args.get("page")
     per_page = request.args.get("per_page")

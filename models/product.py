@@ -1,13 +1,13 @@
-from database import db, Base
-from sqlalchemy.orm import Mapped, mapped_column
-from typing import List
-from models.orderProduct import order_product
+# product.py
+from database import db
+from models.cartProduct import cart_product  # 确保中间表已被导入
 
-class Product(Base):
-    __tablename__ = "products"
+class Product(db.Model):
+    __tablename__ = 'products'
 
-    id: Mapped[int] = mapped_column(primary_key=True) #Auto-increment
-    product_name: Mapped[str] = mapped_column(db.String(255), nullable=False)
-    price: Mapped[float] = mapped_column(db.Float, nullable=False) #floats are good for pricing $10.99
+    id = db.Column(db.Integer, primary_key=True)
+    product_name = db.Column(db.String(100), nullable=False)
+    price = db.Column(db.Float, nullable=False)
 
-    orders: Mapped[List['Order']] = db.relationship(secondary=order_product)
+    # 定义与 Cart 的多对多关系，使用中间表
+    carts = db.relationship('Cart', secondary=cart_product, back_populates='products')

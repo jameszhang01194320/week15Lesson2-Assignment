@@ -17,3 +17,5 @@ class CustomerSchema(ma.Schema): #Inherting our instance of Marshmallow
 
 customer_schema = CustomerSchema() #instantiate a single customer schema
 customers_schema = CustomerSchema(many=True, exclude=["password"])
+# customer_login = CustomerSchema(exclude=["name", 'phone', 'username', 'id', "admin"])
+customer_login = CustomerSchema(exclude=["name", 'phone', 'username', 'id'])
